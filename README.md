@@ -1,99 +1,80 @@
-<h1 align="center">
-    Semaphore Boilerplate
-</h1>
+# 🏗 Scaffold-ETH 2
 
-<p align="center">
-    <a href="https://github.com/semaphore-protocol" target="_blank">
-        <img src="https://img.shields.io/badge/project-Semaphore-blue.svg?style=flat-square">
-    </a>
-    <a href="https://github.com/semaphore-protocol/boilerplate/blob/main/LICENSE">
-        <img alt="Github license" src="https://img.shields.io/github/license/semaphore-protocol/boilerplate.svg?style=flat-square">
-    </a>
-    <a href="https://github.com/semaphore-protocol/boilerplate/actions?query=workflow%3Astyle">
-        <img alt="GitHub Workflow style" src="https://img.shields.io/github/actions/workflow/status/semaphore-protocol/boilerplate/style.yml?branch=main&label=style&style=flat-square&logo=github">
-    </a>
-    <a href="https://eslint.org/">
-        <img alt="Linter eslint" src="https://img.shields.io/badge/linter-eslint-8080f2?style=flat-square&logo=eslint">
-    </a>
-    <a href="https://prettier.io/">
-        <img alt="Code style prettier" src="https://img.shields.io/badge/code%20style-prettier-f8bc45?style=flat-square&logo=prettier">
-    </a>
-    <a href="https://www.gitpoap.io/gh/semaphore-protocol/boilerplate" target="_blank">
-        <img src="https://public-api.gitpoap.io/v1/repo/semaphore-protocol/boilerplate/badge">
-    </a>
-</p>
+<h4 align="center">
+  <a href="https://docs.scaffoldeth.io">Documentation</a> |
+  <a href="https://scaffoldeth.io">Website</a>
+</h4>
 
-| The repository is divided into two components: [web app](./apps/web-app) and [contracts](./apps/contracts). The app allows users to create their own Semaphore identity, join a group and then send their feedback anonymously (currently on Arbitrum Goerli). |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
-## 🛠 Install
+⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
 
-Use this repository as a Github [template](https://github.com/semaphore-protocol/boilerplate/generate).
+- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
+- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
+- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
+- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
+- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
-Clone your repository:
+![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
 
-```bash
-git clone https://github.com/<your-username>/<your-repo>.git
+## Requirements
+
+Before you begin, you need to install the following tools:
+
+- [Node (>= v18.17)](https://nodejs.org/en/download/)
+- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
+- [Git](https://git-scm.com/downloads)
+
+## Quickstart
+
+To get started with Scaffold-ETH 2, follow the steps below:
+
+1. Clone this repo & install dependencies
+
+```
+git clone https://github.com/scaffold-eth/scaffold-eth-2.git
+cd scaffold-eth-2
+yarn install
 ```
 
-and install the dependencies:
+2. Run a local network in the first terminal:
 
-```bash
-cd <your-repo> && yarn
+```
+yarn chain
 ```
 
-## 📜 Usage
+This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
 
-Copy the `.env.example` file as `.env`:
+3. On a second terminal, deploy the test contract:
 
-```bash
-cp .env.example .env
+```
+yarn deploy
 ```
 
-and add your environment variables or run the app in a local network.
+This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
 
-### Local server
+4. On a third terminal, start your NextJS app:
 
-You can start your app locally with:
-
-```bash
-yarn dev
+```
+yarn start
 ```
 
-### Deploy the contract
+Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-1. Go to the `apps/contracts` directory and deploy your contract:
+Run smart contract test with `yarn hardhat:test`
 
-```bash
-yarn deploy --semaphore <semaphore-address> --group <group-id> --network arbitrum-goerli
-```
+- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
+- Edit your frontend in `packages/nextjs/pages`
+- Edit your deployment scripts in `packages/hardhat/deploy`
 
-2. Update your `.env` file with your new contract address, the group id and the semaphore contract address.
+## Documentation
 
-3. Copy your contract artifacts from `apps/contracts/build/contracts/contracts` folder to `apps/web-app/contract-artifacts` folders manually. Or run `yarn copy:contract-artifacts` in the project root to do it automatically.
+Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
 
-> **Note**  
-> Check the Semaphore contract addresses [here](https://semaphore.pse.dev/docs/deployed-contracts).
+To know more about its features, check out our [website](https://scaffoldeth.io).
 
-> **Warning**  
-> The group id is a number!
+## Contributing to Scaffold-ETH 2
 
-### Code quality and formatting
+We welcome contributions to Scaffold-ETH 2!
 
-Run [ESLint](https://eslint.org/) to analyze the code and catch bugs:
-
-```bash
-yarn lint
-```
-
-Run [Prettier](https://prettier.io/) to check formatting rules:
-
-```bash
-yarn prettier
-```
-
-or to automatically format the code:
-
-```bash
-yarn prettier:write
-```
+Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
