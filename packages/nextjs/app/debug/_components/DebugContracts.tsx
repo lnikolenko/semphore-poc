@@ -6,12 +6,8 @@ import { BarsArrowUpIcon } from "@heroicons/react/20/solid";
 import { ContractUI } from "~~/app/debug/_components/contract";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
 import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
-import useSemaphore from "~~/hooks/semaphore/useSemaphore";
-import { Identity } from "@semaphore-protocol/identity"
-import { BigNumberish } from "ethers";
 
 const selectedContractStorageKey = "scaffoldEth2.selectedContract";
-const privateKeyStorageKey = "privateKey"
 const contractsData = getAllContracts();
 const contractNames = Object.keys(contractsData) as ContractName[];
 
@@ -21,27 +17,12 @@ export function DebugContracts() {
     contractNames[0],
     { initializeWithValue: false },
   );
-  const [privateKey, setPrivateKey] = useLocalStorage<BigNumberish>(
-    privateKeyStorageKey,
-    "test",
-    { initializeWithValue: false },
-  );
-  const {_users, refreshUsers} = useSemaphore()
-  //const [commitment, setCommitment] = useState()
 
   useEffect(() => {
     if (!contractNames.includes(selectedContract)) {
       setSelectedContract(contractNames[0]);
     }
   }, [selectedContract, setSelectedContract]);
-
-  useEffect(() => {
-    if (privateKey.toString() === "") {
-      const { privateKey, publicKey, commitment } = new Identity()
-      setPrivateKey(privateKey.toString())
-    }
-    refreshUsers()
-  }, [])
 
   return (
     <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
@@ -78,10 +59,6 @@ export function DebugContracts() {
               className=""
             />
           ))}
-          {_users.map((u, id) => (
-            <div key={id}>{u}</div>
-          ))
-          }
         </>
       )}
     </div>

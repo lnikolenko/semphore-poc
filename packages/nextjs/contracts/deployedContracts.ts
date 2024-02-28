@@ -7,101 +7,96 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Feedback: {
-      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
-      abi: [
+      address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      "abi": [
         {
-          inputs: [
-            {
-              internalType: "contract ISemaphore",
-              name: "_semaphore",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "_groupId",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "nonpayable",
-          type: "constructor",
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "semaphoreAddress",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_groupId",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
         },
         {
-          inputs: [],
-          name: "groupId",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
+            "inputs": [],
+            "name": "groupId",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "identityCommitment",
-              type: "uint256",
-            },
-          ],
-          name: "joinGroup",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "identityCommitment",
+                    "type": "uint256"
+                }
+            ],
+            "name": "joinGroup",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-          inputs: [],
-          name: "semaphore",
-          outputs: [
-            {
-              internalType: "contract ISemaphore",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
+            "inputs": [],
+            "name": "semaphore",
+            "outputs": [
+                {
+                    "internalType": "contract ISemaphore",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "merkleTreeDepth",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "merkleTreeRoot",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "nullifier",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "feedback",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256[8]",
-              name: "points",
-              type: "uint256[8]",
-            },
-          ],
-          name: "sendFeedback",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-      ],
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "feedback",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "merkleTreeRoot",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "nullifierHash",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256[8]",
+                    "name": "proof",
+                    "type": "uint256[8]"
+                }
+            ],
+            "name": "sendFeedback",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
       inheritedFunctions: {},
     },
     SprintVote: {
-      address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+      address: "0xf5059a5D33d5853360D16C683c16e67980206f36",
       abi: [
         {
           inputs: [],

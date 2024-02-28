@@ -1,5 +1,5 @@
 import { SemaphoreEthers } from "@semaphore-protocol/data"
-import { decodeBytes32String, toBeHex } from "ethers"
+import { BigNumber, utils } from "ethers"
 import { useCallback, useState } from "react"
 
 type SemaphoreContextType = {
@@ -19,12 +19,12 @@ export default function useSemaphore(): SemaphoreContextType {
 
     const refreshUsers = useCallback(async (): Promise<void> => {
         const semaphore = new SemaphoreEthers(ethereumNetwork, {
-            address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
+            address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
         })
 
         const members = await semaphore.getGroupMembers("42")
 
-        setUsers(members.map((member: { toString: () => any }) => member.toString()))
+        setUsers(members)
     }, [])
 
     const addUser = useCallback(
@@ -36,12 +36,12 @@ export default function useSemaphore(): SemaphoreContextType {
 
     const refreshFeedback = useCallback(async (): Promise<void> => {
         const semaphore = new SemaphoreEthers(ethereumNetwork, {
-            address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
+            address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
         })
 
-        const proofs = await semaphore.getGroupValidatedProofs("42")
+        const proofs = await semaphore.getGroupVerifiedProofs("42")
 
-        setFeedback(proofs.map(({ message }: any) => decodeBytes32String(toBeHex(message, 32))))
+        setFeedback(proofs.map(({ signal }: any) => utils.parseBytes32String(BigNumber.from(signal).toHexString())))
     }, [])
 
     const addFeedback = useCallback(
