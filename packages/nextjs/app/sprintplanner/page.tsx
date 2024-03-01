@@ -12,7 +12,8 @@ import { getInitialFormState, getParsedContractFunctionArgs } from "../debug/_co
 import { Abi, AbiFunction } from "abitype";
 import { getParsedError, notification } from "~~/utils/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
-import { Feedback } from "./_components";
+import { Feedback, SignMessage } from "./_components";
+import FeedbackJson from "../../contracts/Feedback.json"
 
 const SprintPlanner: NextPage = () => {
   const seedStorageKey = "seedKey"
@@ -29,12 +30,12 @@ const SprintPlanner: NextPage = () => {
       let existingSeed = localStorage.getItem(seedStorageKey)
       if (existingSeed!== null && existingSeed !== "") {
         setSeed(JSON.parse(existingSeed))
-        const id = new Identity("seed6")
+        const id = new Identity("seed9")
         setForm({identityCommitment: id.commitment})
         setIdentity(id)
       } else {
-        const id = new Identity("seed6")
-        setSeed("seed6")
+        const id = new Identity("seed9")
+        setSeed("seed9")
         console.log("commitment is" + id.commitment)
         setForm({identityCommitment: id.commitment})
         setIdentity(id)
@@ -68,7 +69,7 @@ const SprintPlanner: NextPage = () => {
   } = useContractWrite({
     address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
     functionName: "joinGroup",
-    abi: deployedContracts[31337].Feedback.abi as Abi,
+    abi: FeedbackJson.abi as Abi,
     args: getParsedContractFunctionArgs(form),
   });
 
@@ -100,6 +101,7 @@ const SprintPlanner: NextPage = () => {
             }
             {_users.length > 0 && identity && <Feedback identity={identity} users={_users}/>}
             {_feedback}
+            <SignMessage/>
             </div>
           </div>
         </div>

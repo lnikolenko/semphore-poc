@@ -47,6 +47,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const semaphoreAddress = await semaphore.getAddress()
   */
 
+  /*
   await deploy("Feedback", {
     from: deployer,
     // Contract constructor arguments
@@ -56,6 +57,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
+  */
 
 
   // Get the deployed contract to interact with it after deploying.
@@ -67,4 +69,4 @@ export default deployYourContract;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["SprintVote", "Feedback"];
+deployYourContract.tags = ["SprintVote"];

@@ -85,9 +85,8 @@ const provider = new providers.JsonRpcProvider()
         const signal = BigNumber.from(utils.formatBytes32String(feedback)).toString()
         console.log(users)
         
-        console.log(new Identity("seed6").commitment.toString())
+        console.log(new Identity("seed8").commitment.toString())
       
-        
         const { proof, merkleTreeRoot, nullifierHash } = await generateProof(
           identity,
           group,
@@ -109,6 +108,7 @@ const provider = new providers.JsonRpcProvider()
   }
 
   const handleWrite = async () => {
+    
     /*
     console.log(form)
     
@@ -125,7 +125,7 @@ const provider = new providers.JsonRpcProvider()
     */
     
    
-    const feedback = "This is a test message number 2"
+    const feedback = "This is a test message number 4"
     const group = new Group("42", 20, users)
     
 
@@ -135,7 +135,7 @@ const provider = new providers.JsonRpcProvider()
     console.log("signal is" + signal)
     console.log(users)
     
-    console.log(new Identity("seed6").commitment.toString())
+    console.log(new Identity("seed8").commitment.toString())
   
     
     const { proof, merkleTreeRoot, nullifierHash } = await generateProof(
