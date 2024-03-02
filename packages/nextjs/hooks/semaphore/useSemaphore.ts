@@ -40,7 +40,6 @@ export default function useSemaphore(): SemaphoreContextType {
         })
 
         const proofs = await semaphore.getGroupVerifiedProofs("42")
-        console.log(proofs.map(({ signal }: any) => utils.parseBytes32String(BigNumber.from(signal).toHexString())))
 
         setFeedback(proofs.map(({ signal }: any) => utils.parseBytes32String(BigNumber.from(signal).toHexString())))
     }, [])

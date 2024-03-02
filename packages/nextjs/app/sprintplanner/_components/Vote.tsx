@@ -17,6 +17,7 @@ type VoteProps = {
 export const Vote = ({ identity, users }: VoteProps) => {
   const [vote, setVote] = useState('1');
   const [voted, setVoted] = useState<boolean>()
+  const [loading, setLoading] = useState<boolean>()
   const { _feedback, refreshFeedback, addFeedback } = useSemaphore()
 
 
@@ -26,6 +27,8 @@ export const Vote = ({ identity, users }: VoteProps) => {
 
 
   const handleWrite = async () => {
+    setLoading(true)
+
     
     const groupId = "42"
     const depth = 20
@@ -45,38 +48,45 @@ export const Vote = ({ identity, users }: VoteProps) => {
       method: "POST",
       body: JSON.stringify({ signal: signal, proof: proof, merkleTreeRoot: merkleTreeRoot, nullifierHash: nullifierHash })
     });
-    if (resp.status === 200) {
-      setVoted(true)
-      refreshFeedback()
-    } else {
+    if (resp.status !== 200) {
       notification.error("You have already voted.")
+    }
       setVoted(true)
       refreshFeedback()
+      setLoading(false)
     }
-    
-  };
-
 
     return (
       <>
         {!voted ? (
           <>
-          <label>
-          How would you estimate this task?
-          <select value={vote} onChange={handleVoteChange}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </label>
+            <p>You are a member of the group and ready to vote!</p>
+            <label>
+              How would you estimate the task?
+              <select value={vote} onChange={handleVoteChange}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="13">13</option>
+              </select>
+            </label>
 
-        <button className="btn btn-secondary btn-sm" onClick={handleWrite}>Vote!</button>
-        </>
-        ): (
-          <Feedback feedback={_feedback}/>
-        )
+            <button 
+              className="btn btn-secondary btn-sm" 
+              disabled={loading}
+              onClick={handleWrite}>
+                {loading ? "Loading..." : "Vote!"}
+            </button>
+          </>
+          ): (
+            <>
+              <p>Thanks for your vote</p>
+              <Feedback feedback={_feedback}/>
+            </>
+          )
         }
-
       </>
     )
 }

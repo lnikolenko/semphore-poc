@@ -61,7 +61,6 @@ export const GroupDisplay = ({ identity }: GroupProps) => {
       <>
        {isMember ? (
         <>
-          <p>You are a member of the group and ready to vote!</p>
           <Vote identity={identity} users={_users} />
         </>
        ) : (

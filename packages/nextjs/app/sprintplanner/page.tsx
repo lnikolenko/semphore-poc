@@ -36,7 +36,12 @@ const SprintPlanner: NextPage = () => {
         <GroupDisplay identity={identity} />
       </>
       ) : 
-      (<button  disabled={!connectedAddress} className="btn btn-secondary btn-sm" onClick={handleClick}>Please sign a message to sign in! (it's free!)</button>)
+      (<button 
+        disabled={!connectedAddress || isLoading} 
+        className="btn btn-secondary btn-sm" 
+        onClick={handleClick}>
+          Please sign a message to sign in! (it's free!)
+      </button>)
     }
     </>
   )}
