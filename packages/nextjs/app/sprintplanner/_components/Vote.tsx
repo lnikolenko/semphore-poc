@@ -82,7 +82,7 @@ export const Vote = ({ identity, users }: VoteProps) => {
           </>
           ): (
             <>
-              <p>Thanks for your vote</p>
+              <p>Thanks for your vote. Here are the results:</p>
               <Feedback feedback={_feedback}/>
             </>
           )

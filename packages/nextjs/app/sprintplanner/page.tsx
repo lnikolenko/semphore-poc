@@ -6,16 +6,27 @@ import { Identity } from "@semaphore-protocol/identity"
 import { notification } from "~~/utils/scaffold-eth";
 import { GroupDisplay } from "./_components";
 import { useSignMessage, useAccount } from 'wagmi'
+import { useLocalStorage } from "usehooks-ts";
 
 const SprintPlanner: NextPage = () => {
-  const message = "Sign this message to sign into the anonymous survey tool3"
+  const message = "Sign this message to sign into the anonymous survey tool4"
+  const identitySeedKey = "identitySeedKey"
+
   const { data: signMessageData, error, isLoading, signMessage, variables } = useSignMessage()
   const { address: connectedAddress } = useAccount()
   const [identity, setIdentity] = useState<Identity>()
+  const [identitySeed, setIdentitySeed] = useLocalStorage(identitySeedKey, localStorage.getItem(identitySeedKey))
+
+  useEffect(() => {
+    if (identitySeed) {
+      setIdentity(new Identity(identitySeed))
+    }
+  }, [])
 
   useEffect(() => {
     if (signMessageData) {
       setIdentity(new Identity(signMessageData))
+      setIdentitySeed(signMessageData)
     }
   }, [signMessageData])
 
@@ -32,7 +43,7 @@ const SprintPlanner: NextPage = () => {
     <>
     {identity ? (
       <>
-        <p>Your identity is {identity.commitment.toString()}</p>
+        <p>Your anonymized identity is {identity.commitment.toString()}</p>
         <GroupDisplay identity={identity} />
       </>
       ) : 

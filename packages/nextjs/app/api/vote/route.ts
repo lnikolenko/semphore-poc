@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     const postData = await request.json()
 
     const provider = new providers.JsonRpcProvider({fetchOptions: {
-        referrer: "https://localhost:300",
+        referrer: "https://localhost:3000",
       },
       url: 'http://localhost:8545'
     })

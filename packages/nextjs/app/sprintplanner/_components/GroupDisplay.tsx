@@ -66,7 +66,7 @@ export const GroupDisplay = ({ identity }: GroupProps) => {
        ) : (
         <>
         <p>Please join the group in order to vote</p>
-        <button className="btn btn-secondary btn-sm" onClick={joinGroup}>Join group</button>
+        <button className="btn btn-secondary btn-sm" onClick={joinGroup} disabled={isLoading}>Join group</button>
         </>
        )
        }
