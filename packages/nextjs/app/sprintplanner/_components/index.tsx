@@ -1,2 +1,3 @@
 export * from "./Feedback";
-export * from "./SignMessage";
+export * from "./GroupDisplay";
+export * from "./Vote";
